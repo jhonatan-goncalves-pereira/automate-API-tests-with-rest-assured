@@ -1,5 +1,6 @@
 package com.exemplo.chapter01;
 
+import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
@@ -8,13 +9,43 @@ import static org.hamcrest.Matchers.*;
 public class TestChapter01 {
 
     @Test
-    public void testRequestZipCode63210_000checkInResponseBody_expectMauriti() {
+    public void testRequestZipCodeBR63210_000checkInResponseBody_expectMauriti() {
         given().
         when().
                 get("https://api.zippopotam.us/BR/63210-000").
         then().
                 assertThat().
-                statusCode(200). // Verifica se a resposta foi bem-sucedida
-                body("places[0].'place name'", equalTo("Mauriti")); // Corrigido o caminho JSON
+                statusCode(200).
+                body("places[0].'place name'", equalTo("Mauriti"));
+    }
+
+    @Test
+    public  void testRequestZipCodeBR63210_000checkStatusCode_expectHttp200(){
+        given()
+        .when().
+                get("https://api.zippopotam.us/BR/63210-000")
+        .then().
+                assertThat().
+                statusCode(200);
+    }
+
+    @Test
+    public void testRequestZipCodeBR63210_000checkContentType_expectApplicationJson(){
+        given()
+        .when().
+                get("https://api.zippopotam.us/BR/63210-000")
+        .then().
+            assertThat()
+            .contentType(ContentType.JSON);
+    }
+
+    @Test
+    public void testRequestZipCodeBR63210_000logRequestAndResponseDetails(){
+        given().
+                log().all()
+        .when().
+                get("https://api.zippopotam.us/BR/63210-000")
+        .then().
+                log().body();
     }
 }
