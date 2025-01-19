@@ -1,4 +1,4 @@
-package com.exemplo.chapter01;
+package com.exemplo.aulas;
 
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
@@ -6,7 +6,7 @@ import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
 
-public class TestChapter01 {
+public class GPathAndHamcrestExploration {
 
     @Test
     public void testRequestZipCodeBR63210_000checkInResponseBody_expectMauriti() {
