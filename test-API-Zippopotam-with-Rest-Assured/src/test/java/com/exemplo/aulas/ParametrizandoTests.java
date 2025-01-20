@@ -1,6 +1,6 @@
 package com.exemplo.aulas;
 
-import com.tngtech.java.junit.dataprovider.*;
+tatusimport com.tngtech.java.junit.dataprovider.*;
 import org.junit.runner.RunWith;
 
 @RunWith(DataProviderRunner.class)
